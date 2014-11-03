@@ -27,13 +27,12 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
     }
 
     @IBAction func onImage1(sender: UITapGestureRecognizer) {
-    //one
         performSegueWithIdentifier("zoom segue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var destinationViewController = segue.destinationViewController as PhotosViewController
-        destinationViewController.image = self.imageViewOne.image
+        destinationViewController.image = sender.view! as UI
         destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
         destinationViewController.transitioningDelegate = self
     }
@@ -61,7 +60,6 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
-            
             var photoVC = toViewController as PhotosViewController
             imageViewOne.hidden = true
             photoVC.imageView.hidden = true
@@ -72,13 +70,13 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             var newPhoto = UIImageView(frame: imageViewOne.frame)
             newPhoto.image = imageViewOne.image
             newPhoto.contentMode = imageViewOne.contentMode
-            window.addSubview(imageViewOne)
+            //window.addSubview(newPhoto)
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 newPhoto.frame = photoVC.imageView.frame
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
-                    newPhoto.removeFromSuperview()
+                    //newPhoto.removeFromSuperview()
                     photoVC.imageView.hidden = false
                     transitionContext.completeTransition(true)
             }
@@ -86,12 +84,12 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             var feedVC = toViewController as NewsFeedViewController
             var window = UIApplication.sharedApplication().keyWindow
             imageViewOne.hidden = true
-            feedVC.imageViewOne.hidden = true
+            //feedVC.imageViewOne.hidden = true
             
             var smallPhoto = UIImageView(frame: imageViewOne.frame)
             smallPhoto.image = imageViewOne.image
             smallPhoto.contentMode = imageViewOne.contentMode
-            window.addSubview(smallPhoto)
+            //window.addSubview(smallPhoto)
             
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
@@ -99,8 +97,8 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
-                    feedVC.imageViewOne.hidden = true
-                    smallPhoto.removeFromSuperview()
+                    //smallPhoto.removeFromSuperview()
+                    feedVC.imageViewOne.hidden = false
             }
         }
     }
