@@ -61,19 +61,46 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
-            var window = UIApplication.sharedApplication().keyWindow
+            
+            var photoVC = toViewController as PhotosViewController
+            imageViewOne.hidden = true
+            photoVC.imageView.hidden = true
             toViewController.view.alpha = 0
+            
+            
+            var window = UIApplication.sharedApplication().keyWindow
+            var newPhoto = UIImageView(frame: imageViewOne.frame)
+            newPhoto.image = imageViewOne.image
+            newPhoto.contentMode = imageViewOne.contentMode
+            window.addSubview(imageViewOne)
+            
             UIView.animateWithDuration(0.4, animations: { () -> Void in
+                newPhoto.frame = photoVC.imageView.frame
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
+                    newPhoto.removeFromSuperview()
+                    photoVC.imageView.hidden = false
                     transitionContext.completeTransition(true)
             }
         } else {
+            var feedVC = toViewController as NewsFeedViewController
+            var window = UIApplication.sharedApplication().keyWindow
+            imageViewOne.hidden = true
+            feedVC.imageViewOne.hidden = true
+            
+            var smallPhoto = UIImageView(frame: imageViewOne.frame)
+            smallPhoto.image = imageViewOne.image
+            smallPhoto.contentMode = imageViewOne.contentMode
+            window.addSubview(smallPhoto)
+            
+            
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 fromViewController.view.alpha = 0
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
+                    feedVC.imageViewOne.hidden = true
+                    smallPhoto.removeFromSuperview()
             }
         }
     }
