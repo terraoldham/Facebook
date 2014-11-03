@@ -9,15 +9,11 @@
 import UIKit
 
 class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
-    @IBOutlet weak var imageViewOne: UIImageView!
-    @IBOutlet weak var imageViewTwo: UIImageView!
-    @IBOutlet weak var imageViewThree: UIImageView!
-    @IBOutlet weak var imageViewFour: UIImageView!
-    @IBOutlet weak var imageViewFive: UIImageView!
     var image: UIImage!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     var isPresenting: Bool = true
+    var currentSender: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +23,14 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
     }
 
     @IBAction func onImage1(sender: UITapGestureRecognizer) {
-        performSegueWithIdentifier("zoom segue", sender: self)
+        performSegueWithIdentifier("zoom segue", sender: sender)
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var destinationViewController = segue.destinationViewController as PhotosViewController
-        destinationViewController.image = sender.view! as UI
+        currentSender = sender.view! as UIImageView
+        destinationViewController.image = currentSender.image
         destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
         destinationViewController.transitioningDelegate = self
     }
@@ -61,94 +59,47 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             var photoVC = toViewController as PhotosViewController
-            imageViewOne.hidden = true
-            photoVC.imageView.hidden = true
+            //imageViewOne.hidden = true
+            //photoVC.imageView.hidden = true
             toViewController.view.alpha = 0
             
             
             var window = UIApplication.sharedApplication().keyWindow
-            var newPhoto = UIImageView(frame: imageViewOne.frame)
-            newPhoto.image = imageViewOne.image
-            newPhoto.contentMode = imageViewOne.contentMode
-            //window.addSubview(newPhoto)
+            var newPhoto = UIImageView(frame: currentSender.frame)
+            newPhoto.image = photoVC.image
+            newPhoto.contentMode = currentSender.contentMode
+            window.addSubview(newPhoto)
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 newPhoto.frame = photoVC.imageView.frame
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
-                    //newPhoto.removeFromSuperview()
-                    photoVC.imageView.hidden = false
+                    newPhoto.removeFromSuperview()
+                    //photoVC.imageView.hidden = false
                     transitionContext.completeTransition(true)
             }
         } else {
             var feedVC = toViewController as NewsFeedViewController
             var window = UIApplication.sharedApplication().keyWindow
-            imageViewOne.hidden = true
+            //imageViewOne.hidden = true
             //feedVC.imageViewOne.hidden = true
-            
-            var smallPhoto = UIImageView(frame: imageViewOne.frame)
-            smallPhoto.image = imageViewOne.image
-            smallPhoto.contentMode = imageViewOne.contentMode
-            //window.addSubview(smallPhoto)
             
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 fromViewController.view.alpha = 0
+                var smallPhoto = UIImageView(frame: self.currentSender.frame)
+                smallPhoto.image = self.currentSender.image
+                smallPhoto.contentMode = self.currentSender.contentMode
+                
+                //window.addSubview(smallPhoto)
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
                     //smallPhoto.removeFromSuperview()
-                    feedVC.imageViewOne.hidden = false
+                    //feedVC.imageViewOne.hidden = false
             }
         }
     }
-    
-    
- 
-    //@IBAction func onImage2(sender: UITapGestureRecognizer) {
-        //two
-        //func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-            //var destinationViewController = segue.destinationViewController as PhotosViewController
-            //destinationViewController.image = self.imageViewTwo.image
-        //}
-        //performSegueWithIdentifier("zoom segue", sender: self)
-    //}
-    
-    //@IBAction func onImage3(sender: UITapGestureRecognizer) {
-        //three
-        //func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-            //var destinationViewController = segue.destinationViewController as PhotosViewController
-            //destinationViewController.image = self.imageViewThree.image
-        //}
-        //performSegueWithIdentifier("zoom segue", sender: self)
-    //}
-
-    
-    //@IBAction func onImage4(sender: UITapGestureRecognizer) {
-        //four
-        //func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-            //var destinationViewController = segue.destinationViewController as PhotosViewController
-            //destinationViewController.image = self.imageViewFour.image
-        //}
-        //performSegueWithIdentifier("zoom segue", sender: self)
-    //}
-    
-    //@IBAction func onImage5(sender: UITapGestureRecognizer) {
-        //five
-        //func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-            //var destinationViewController = segue.destinationViewController as PhotosViewController
-            //destinationViewController.image = self.imageViewFive.image
-        //}
-        //performSegueWithIdentifier("zoom segue", sender: self)
-    //}
-    
-   // override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        //var destinationViewController = segue.destinationViewController as PhotosViewController
-        //destinationViewController.image = self.imageView.image
-        
-    //}
-    
-    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
