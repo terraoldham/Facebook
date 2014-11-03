@@ -14,10 +14,16 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     var image: UIImage!
+    var xOffset: CGFloat!
+    var yOffset: CGFloat!
     
     @IBOutlet weak var doneImageView: UIImageView!
     @IBAction func onDoneClick(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
+        return imageView
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView!) {
@@ -36,13 +42,17 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
             self.doneImageView.alpha = 1
+            yOffset = scrollView.contentOffset.y
+            if yOffset > 100 {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image
-        scrollView.contentSize = CGSize(width: 320, height: 600)
+        scrollView.contentSize = CGSize(width: 320, height: 1000)
         scrollView.delegate = self
         
 
