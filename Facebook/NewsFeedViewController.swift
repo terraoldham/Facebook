@@ -59,8 +59,6 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             var photoVC = toViewController as PhotosViewController
-            //imageViewOne.hidden = true
-            //photoVC.imageView.hidden = true
             toViewController.view.alpha = 0
             
             
@@ -70,20 +68,16 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             newPhoto.contentMode = currentSender.contentMode
             
             
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(5, animations: { () -> Void in
                 newPhoto.frame = photoVC.imageView.frame
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
                     newPhoto.removeFromSuperview()
-                    //window.addSubview(newPhoto)
-                    //photoVC.imageView.hidden = false
                     transitionContext.completeTransition(true)
             }
         } else {
             var feedVC = toViewController as NewsFeedViewController
             var window = UIApplication.sharedApplication().keyWindow
-            //currentSender.hidden = true
-            //feedVC.currentSender.hidden = true
             
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
@@ -92,12 +86,9 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
                 smallPhoto.image = self.currentSender.image
                 smallPhoto.contentMode = self.currentSender.contentMode
                 
-                //window.addSubview(smallPhoto)
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
-                    //smallPhoto.removeFromSuperview()
-                    //feedVC.imageViewOne.hidden = false
             }
         }
     }
