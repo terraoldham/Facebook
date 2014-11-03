@@ -68,21 +68,22 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             var newPhoto = UIImageView(frame: currentSender.frame)
             newPhoto.image = photoVC.image
             newPhoto.contentMode = currentSender.contentMode
-            window.addSubview(newPhoto)
+            
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 newPhoto.frame = photoVC.imageView.frame
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
                     newPhoto.removeFromSuperview()
+                    //window.addSubview(newPhoto)
                     //photoVC.imageView.hidden = false
                     transitionContext.completeTransition(true)
             }
         } else {
             var feedVC = toViewController as NewsFeedViewController
             var window = UIApplication.sharedApplication().keyWindow
-            //imageViewOne.hidden = true
-            //feedVC.imageViewOne.hidden = true
+            //currentSender.hidden = true
+            //feedVC.currentSender.hidden = true
             
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in

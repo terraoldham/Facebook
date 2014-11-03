@@ -17,6 +17,7 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     var xOffset: CGFloat!
     var yOffset: CGFloat!
     
+    @IBOutlet weak var actionsView: UIImageView!
     @IBOutlet weak var doneImageView: UIImageView!
     @IBAction func onDoneClick(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -35,6 +36,7 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.doneImageView.alpha = 0
+            self.actionsView.alpha = 0
         })
         
     }
@@ -42,6 +44,7 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
             self.doneImageView.alpha = 1
+            self.actionsView.alpha = 1
             yOffset = scrollView.contentOffset.y
             if yOffset > 100 {
                 dismissViewControllerAnimated(true, completion: nil)
