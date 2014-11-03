@@ -60,8 +60,6 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             containerView.addSubview(toViewController.view)
             
             var photoVC = toViewController as PhotosViewController
-            currentSender.hidden = true
-            //above
             toViewController.view.alpha = 0
             
             
@@ -70,7 +68,6 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             newPhoto.image = photoVC.image
             newPhoto.contentMode = currentSender.contentMode
             window.addSubview(newPhoto)
-            //above
             
             
             UIView.animateWithDuration(5, animations: { () -> Void in
@@ -85,7 +82,6 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         } else {
             var feedVC = toViewController as NewsFeedViewController
             var window = UIApplication.sharedApplication().keyWindow
-            //imageView.hidden = true
             feedVC.currentSender.hidden = true
             
             
@@ -94,6 +90,7 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
                 var smallPhoto = UIImageView(frame: self.currentSender.frame)
                 smallPhoto.image = self.currentSender.image
                 smallPhoto.contentMode = self.currentSender.contentMode
+                feedVC.currentSender.hidden = false
                 
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
