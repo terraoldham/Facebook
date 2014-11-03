@@ -140,6 +140,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3pa-IV-kLI">
+                                <rect key="frame" x="-33" y="0.0" width="353" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="T4N-Am-Rb7">
+                                        <rect key="frame" x="40" y="113" width="299" height="342"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doneButton" id="gwO-qf-AvV">
                                 <rect key="frame" x="253" y="21" width="51" height="27"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,20 +164,18 @@
                                     <action selector="onDoneClick:" destination="wNZ-vn-xHw" eventType="touchUpInside" id="jyJ-Sn-9uN"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="T4N-Am-Rb7">
-                                <rect key="frame" x="11" y="118" width="299" height="342"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="doneImageView" destination="gwO-qf-AvV" id="aSn-L8-Vj3"/>
                         <outlet property="imageView" destination="T4N-Am-Rb7" id="zH4-2a-3Vs"/>
+                        <outlet property="scrollView" destination="3pa-IV-kLI" id="ntg-D4-3hq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chz-Wn-tY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1372" y="1436"/>
+            <point key="canvasLocation" x="-1369" y="1428"/>
         </scene>
         <!--News Feed View Controller-->
         <scene sceneID="ac3-av-Vri">
