@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0CB94C1C19F0A2F50054734A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB94C1B19F0A2F50054734A /* LoginViewController.swift */; };
 		0CB94C1E19F0B51C0054734A /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB94C1D19F0B51C0054734A /* LogOutViewController.swift */; };
+		0CCECE0F1A06F7DE002A84AC /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCECE0E1A06F7DE002A84AC /* PhotosViewController.swift */; };
 		42167656198E3220008CCBC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42167655198E3220008CCBC3 /* AppDelegate.swift */; };
 		4216765B198E3220008CCBC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42167659198E3220008CCBC3 /* Main.storyboard */; };
 		4216765D198E3220008CCBC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4216765C198E3220008CCBC3 /* Images.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		0CB94C1B19F0A2F50054734A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0CB94C1D19F0B51C0054734A /* LogOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
+		0CCECE0E1A06F7DE002A84AC /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		42167650198E3220008CCBC3 /* Facebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42167654198E3220008CCBC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42167655198E3220008CCBC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				42167674198EAAC6008CCBC3 /* View Controllers */,
 				42167655198E3220008CCBC3 /* AppDelegate.swift */,
 				42167659198E3220008CCBC3 /* Main.storyboard */,
+				0CCECE0E1A06F7DE002A84AC /* PhotosViewController.swift */,
 				0CB94C1D19F0B51C0054734A /* LogOutViewController.swift */,
 				0CB94C1B19F0A2F50054734A /* LoginViewController.swift */,
 				4216765C198E3220008CCBC3 /* Images.xcassets */,
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				429277A0198F068E00E19641 /* StoryViewController.swift in Sources */,
+				0CCECE0F1A06F7DE002A84AC /* PhotosViewController.swift in Sources */,
 				429277A2198F35B600E19641 /* MessagesViewController.swift in Sources */,
 				42167676198ECA7C008CCBC3 /* NotificationsViewController.swift in Sources */,
 				42167656198E3220008CCBC3 /* AppDelegate.swift in Sources */,
