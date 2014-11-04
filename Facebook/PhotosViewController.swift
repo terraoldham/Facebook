@@ -11,11 +11,13 @@ import UIKit
 class PhotosViewController: UIViewController, UIScrollViewDelegate {
     
     
+    @IBOutlet var viewView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     var image: UIImage!
     var xOffset: CGFloat!
     var yOffset: CGFloat!
+    var imageCenter: CGFloat!
     
     @IBOutlet weak var actionsView: UIImageView!
     @IBOutlet weak var doneImageView: UIImageView!
@@ -28,12 +30,20 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView!) {
-        //var point = scrollView.locationInView(view)
-        //var velocity = scrollView.velocityInView(view)
-        //var translation = scrollView.translationInView(view)
+        imageCenter = imageView.center.y
+        println(imageCenter)
+        println(imageCenter)
+        yOffset = scrollView.contentOffset.y
+        var alphaColorPercent = 1 - yOffset / (568 / 2)
+        println(yOffset)
+        println(alphaColorPercent)
+        self.viewView.backgroundColor = UIColor(white: 0, alpha: alphaColorPercent)
+    
+        
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
+        
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.doneImageView.alpha = 0
             self.actionsView.alpha = 0
@@ -43,6 +53,7 @@ class PhotosViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
+            self.viewView.backgroundColor = UIColor(white: 0, alpha: 1)
             self.doneImageView.alpha = 1
             self.actionsView.alpha = 1
             yOffset = scrollView.contentOffset.y

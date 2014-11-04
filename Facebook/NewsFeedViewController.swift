@@ -64,7 +64,8 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             
             
             var window = UIApplication.sharedApplication().keyWindow
-            var newPhoto = UIImageView(frame: currentSender.frame)
+            var newPhotoFrame = view.convertRect(currentSender.frame, fromView: currentSender.superview)
+            var newPhoto = UIImageView(frame: newPhotoFrame)
             newPhoto.image = photoVC.image
             newPhoto.contentMode = currentSender.contentMode
             window.addSubview(newPhoto)
