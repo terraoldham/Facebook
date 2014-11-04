@@ -75,7 +75,7 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             toViewController.view.alpha = 0
         
             
-            UIView.animateWithDuration(5, animations: { () -> Void in
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
                 newPhoto.frame = transitionFrame
                 toViewController.view.alpha = 1
                 photoVC.imageView.hidden = true
