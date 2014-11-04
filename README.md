@@ -14,4 +14,4 @@ Project Requirements
 - Optional: The user should be able to page through the other photos in full screen mode.
 
 
-![application image](Facebook Week 4.gif)
+![application image](FB.gif)
