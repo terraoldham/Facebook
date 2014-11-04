@@ -152,8 +152,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="T4N-Am-Rb7">
-                                        <rect key="frame" x="11" y="113" width="299" height="342"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="T4N-Am-Rb7">
+                                        <rect key="frame" x="8" y="54" width="304" height="470"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -230,7 +230,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="y5p-x0-MCf" appends="YES" id="7Zb-oZ-Wj5"/>
+                                            <outletCollection property="gestureRecognizers" destination="DVL-UL-3Gr" appends="YES" id="DTI-5E-7zY"/>
                                         </connections>
                                     </imageView>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wedding4" id="ZT7-Pg-Iu8">
@@ -254,7 +254,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="y5p-x0-MCf" appends="YES" id="I2l-C4-f6G"/>
+                                            <outletCollection property="gestureRecognizers" destination="ezY-SQ-mZB" appends="YES" id="u15-AL-mVa"/>
                                         </connections>
                                     </imageView>
                                 </subviews>
@@ -301,16 +301,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Rx-vT-Xm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="DVL-UL-3Gr">
-                    <connections>
-                        <action selector="onImage1:" destination="hBK-bb-7vk" id="gWj-ha-2gV"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="ezY-SQ-mZB">
-                    <connections>
-                        <action selector="onImage1:" destination="hBK-bb-7vk" id="eze-dT-lV4"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <tapGestureRecognizer id="BJ6-r0-6yI">
                     <connections>
                         <action selector="onImage1:" destination="hBK-bb-7vk" id="5tx-P3-6I0"/>
@@ -324,6 +314,16 @@
                 <tapGestureRecognizer id="y5p-x0-MCf">
                     <connections>
                         <action selector="onImage1:" destination="hBK-bb-7vk" id="F04-Bh-lyR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="DVL-UL-3Gr">
+                    <connections>
+                        <action selector="onImage1:" destination="hBK-bb-7vk" id="gWj-ha-2gV"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ezY-SQ-mZB">
+                    <connections>
+                        <action selector="onImage1:" destination="hBK-bb-7vk" id="eze-dT-lV4"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

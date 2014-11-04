@@ -60,19 +60,23 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
             containerView.addSubview(toViewController.view)
             
             var photoVC = toViewController as PhotosViewController
-            toViewController.view.alpha = 0
-            
-            
+            var transitionFrame = view.convertRect(photoVC.imageView.frame, fromView: photoVC.imageView.superview)
             var window = UIApplication.sharedApplication().keyWindow
             var newPhotoFrame = view.convertRect(currentSender.frame, fromView: currentSender.superview)
             var newPhoto = UIImageView(frame: newPhotoFrame)
+            var photoCenter = newPhoto.center
             newPhoto.image = photoVC.image
-            newPhoto.contentMode = currentSender.contentMode
-            window.addSubview(newPhoto)
+            newPhoto.frame.size = imageSizing(newPhoto)
+            newPhoto.center = photoCenter
             
+            newPhoto.image = photoVC.image
+            newPhoto.contentMode = UIViewContentMode.ScaleAspectFit
+            window.addSubview(newPhoto)
+            toViewController.view.alpha = 0
+        
             
             UIView.animateWithDuration(5, animations: { () -> Void in
-                newPhoto.frame = photoVC.imageView.frame
+                newPhoto.frame = transitionFrame
                 toViewController.view.alpha = 1
                 photoVC.imageView.hidden = true
                 }) { (finished: Bool) -> Void in
@@ -108,4 +112,15 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         scrollView.scrollIndicatorInsets.top = 0
         scrollView.scrollIndicatorInsets.bottom = 50
     }
+    
+   func imageSizing(imageView: UIImageView) -> CGSize {
+    var newSize = imageView.frame.size
+    if (imageView.frame.height / imageView.frame.width) < (imageView.image!.size.height / imageView.image!.size.width) {
+        newSize.height = imageView.image!.size.height / imageView.image!.size.width * imageView.frame.width
+    } else {
+        newSize.width = imageView.image!.size.width / imageView.image!.size.height * imageView.frame.height
+    }
+        return newSize
+   }
+    
 }
