@@ -13,4 +13,5 @@ Project Requirements
 - [x] Optional: The full screen photo should be zoomable.
 - Optional: The user should be able to page through the other photos in full screen mode.
 
+
 ![application image](Facebook Week 4.gif)
