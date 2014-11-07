@@ -14,6 +14,7 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
     @IBOutlet weak var feedImageView: UIImageView!
     var isPresenting: Bool = true
     var currentSender: UIImageView!
+    var newPhoto: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,17 +59,17 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
+            var newPhotoFrame = view.convertRect(currentSender.frame, fromView: currentSender.superview)
+            newPhoto = UIImageView(frame: newPhotoFrame)
             
             var photoVC = toViewController as PhotosViewController
             var transitionFrame = view.convertRect(photoVC.imageView.frame, fromView: photoVC.imageView.superview)
             var window = UIApplication.sharedApplication().keyWindow
-            var newPhotoFrame = view.convertRect(currentSender.frame, fromView: currentSender.superview)
-            var newPhoto = UIImageView(frame: newPhotoFrame)
             var photoCenter = newPhoto.center
+            
             newPhoto.image = photoVC.image
             newPhoto.frame.size = imageSizing(newPhoto)
             newPhoto.center = photoCenter
-            
             newPhoto.image = photoVC.image
             newPhoto.contentMode = UIViewContentMode.ScaleAspectFit
             window.addSubview(newPhoto)
@@ -76,30 +77,45 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-                newPhoto.frame = transitionFrame
+                self.newPhoto.frame = transitionFrame
                 toViewController.view.alpha = 1
                 photoVC.imageView.hidden = true
+                
                 }) { (finished: Bool) -> Void in
-                    newPhoto.removeFromSuperview()
+                    self.newPhoto.removeFromSuperview()
                     photoVC.imageView.hidden = false
                     transitionContext.completeTransition(true)
             }
         } else {
-            var feedVC = toViewController as NewsFeedViewController
-            var window = UIApplication.sharedApplication().keyWindow
-            feedVC.currentSender.hidden = true
+            //containerView.addSubview(toViewController.view)
             
+            var photoVC = fromViewController as PhotosViewController
+            var transitionFrame = view.convertRect(currentSender.frame, fromView: photoVC.imageView.superview)
+            var window = UIApplication.sharedApplication().keyWindow
+            var secondPhotoFrame = view.convertRect(photoVC.imageView.frame, fromView: photoVC.imageView.superview)
+            var secondPhoto = UIImageView(frame: secondPhotoFrame)
+            var secondCenter = currentSender.center
+            
+            //secondPhoto.frame.size = currentSender.frame.size
+            secondPhoto.image = photoVC.imageView.image
+            secondPhoto.contentMode = UIViewContentMode.ScaleAspectFill
+            window.addSubview(secondPhoto)
+            toViewController.view.alpha = 0
             
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-                fromViewController.view.alpha = 0
-                var smallPhoto = UIImageView(frame: self.currentSender.frame)
-                smallPhoto.image = self.currentSender.image
-                smallPhoto.contentMode = self.currentSender.contentMode
-                feedVC.currentSender.hidden = false
+                //secondPhoto.view.frame.size = self.view.currentSender.frame.size
+                secondPhoto.frame.size = transitionFrame.size
+                secondPhoto.center.y = secondCenter.y + 110
+                secondPhoto.center.x = secondCenter.x
+                photoVC.view.hidden = true
+                photoVC.view.alpha = 0
+                toViewController.view.alpha = 1
                 
                 }) { (finished: Bool) -> Void in
+                    secondPhoto.removeFromSuperview()
+                    photoVC.view.removeFromSuperview()
                     transitionContext.completeTransition(true)
-                    fromViewController.view.removeFromSuperview()
+                    
             }
         }
     }
@@ -123,4 +139,5 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         return newSize
    }
     
+
 }
